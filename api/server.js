@@ -18,15 +18,17 @@ server.get('/', (req, res) => {
             }
       })
       .post('/games', async (req, res) => {
-            const game = req.body;
-            if(game.title && game.genre){
-                  try {
+            const game = {...req.body,
+                  
+            };
+            if(!game.title && !game.genre){
+                  return res.status(422).json({message: 'sorry, title and genre are required'});  
+            } 
+            try {
 
-                  } catch (error){
-                        res.status(500).json(error)
-                  }     
-            } else {
-                  res.status(400).json({ message: 'title and genre are required'})
+            } catch (error) {
+                  console.log(error);
+                  res.status(500).json({ error: 'sorry, we failed adding that to the database'});
             }
             
       })

@@ -9,7 +9,7 @@ describe('games model', () => {
             expect(process.env.DB_ENV).toBe('testing');
       })
 
-      describe('getAll()', () => {
+      describe('get()', () => {
 
       })
       describe('add()', () => {
