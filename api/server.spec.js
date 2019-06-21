@@ -37,7 +37,14 @@ describe('server', () => {
 
       describe('POST "/games"', () => {
             it('should respond with 201 when new game is added', async () => {
-                  
-            }
+                  const game = {
+                        title: 'Settlers of Catan',
+                        genre: 'Strategy/Board'
+                  }
+                  const res = await supertest(server)
+                        .post('/games')
+                        .send(game)
+                        .expect(201)
+            })
       })
 })
