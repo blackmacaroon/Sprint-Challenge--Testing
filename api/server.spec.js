@@ -1,7 +1,12 @@
+const db = require('../data/dbConfig');
 const server = require('./server.js');
 const supertest = require('supertest');
 
 describe('server', () => {
+      beforeEach(async () => {
+            await db('games').truncate();
+      })
+
       describe('GET "/" sanity check', () => {
             it('should render with no errors and 200 ok', () => {
                   return supertest(server)
@@ -33,6 +38,10 @@ describe('server', () => {
                   .get('/games')
                   .expect('Content-Type', /json/i)
             })
+            it('should return an array', async () => {
+                  let res = await supertest(server)
+                  expect(Array.isArray(res.body)).toBe(true);
+            })
       })
 
       describe('POST "/games"', () => {
@@ -41,13 +50,13 @@ describe('server', () => {
                         title: 'Settlers of Catan',
                         genre: 'Strategy/Board'
                   }
-                  const res = await supertest(server)
+                  await supertest(server)
                         .post('/games')
                         .send(game)
                         .expect(201)
             })
             it('should return a 400 error when required info is missing', async () => {
-                  const res = await supertest(server)
+                  let res = await supertest(server)
                   .post('/games')
                   .send({ title: 'Tomb Raider'})
                   expect(res.status).toBe(422)
