@@ -55,11 +55,29 @@ describe('server', () => {
                         .send(game)
                         .expect(201)
             })
+            it('should respond in json format', async () => {
+                  const game = {
+                        title: 'Settlers of Catan',
+                        genre: 'Strategy/Board'
+                  }
+                  await supertest(server)
+                        .post('/games')
+                        .send(game)
+                        .expect('Content-Type', /json/i)
+            })
             it('should return a 400 error when required info is missing', async () => {
                   let res = await supertest(server)
-                  .post('/games')
-                  .send({ title: 'Tomb Raider'})
-                  expect(res.status).toBe(422)
+                        .post('/games')
+                        .send({ title: 'Tomb Raider'})
+                        expect(res.status).toBe(422)
             })
       })
+      // describe('DELETE "/games:id"', () => {
+      //       it('should delete game and return 204', async () => {
+      //              let res = await supertest(server).get('/games')
+      //              let game = await supertest(server).delete(`/games/${res.body.id}`);
+      //              expect(game.status).toBe(204)
+      //              expect(game.body).toHaveLength(0)
+      //       })
+      // })
 })
