@@ -39,7 +39,7 @@ describe('server', () => {
                   .expect('Content-Type', /json/i)
             })
             it('should return an array', async () => {
-                  let res = await supertest(server)
+                  let res = await supertest(server).get('/games')
                   expect(Array.isArray(res.body)).toBe(true);
             })
       })
