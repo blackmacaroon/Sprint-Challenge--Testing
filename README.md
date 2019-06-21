@@ -25,8 +25,23 @@ In this challenge use `Test Driven Development` to build a RESTful API using Nod
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 1. In Jest, what are the differences between `describe()` and `it()` globals, and what are good uses for them?
+===============================================================================
+
+`describe()` is used to group together several related tests, creating a test 'suite'. It's not required but it helps keep things organized and helps you understand exactly where each test is coming from. You can also nest describes inside an outer describe to create a testing heirarchy.
+`it()` is synonymous with `test()` they're used to describe the actual test and what the outcome is expected to be. each `it()` is considered one test, but you can put as many expectations into it as you'd like
+
 1. What is the point of `Test Driven Development`? What do you think about this approach?
+===============================================================================
+
+TDD is useful in that it allows you to program onward confidently. As you test, you code only what's necessary to pass. This saves you a lot of time maybe over-coding and it also makes debugging an easier process. If you're testing well, as you code, you'll know immediately if something breaks. When it comes time to deploy, you will be confident that every component and method and function is behaving precisely as you want it to before your users get a chance to find errors and complain about it. So far, I love TDD, it makes perfect sense from a developer perspective. I would enjoy digging deeper into testing, it's been fun flexing this new muscle trying to figure out what to test before it even existst to test it.
+
 1. Mention three types of automated tests.
+===============================================================================
+
+static tests - catch basic user errors like typos and type errors as you code - quick and cheap
+unit tests - to verify that each individual unit is working as expected - medium quick and medium cheap
+integration tests - to verify that all the working units work together as expected - medium slow, medium expensive
+e2e tests - like a lil robot, acting as a user, running around in your app clicking on everything to verify that everything works as expected. Slow and expensive.
 
 ## Project Set Up
 
