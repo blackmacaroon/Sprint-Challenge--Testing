@@ -2,7 +2,8 @@ const db = require('../data/dbConfig.js');
 
 module.exports = {
    get,
-   add   
+   add, 
+   remove  
 };
 
 function get() {
@@ -17,4 +18,10 @@ function add(game) {
                         .where({ id: ids[0] })
                         .first()
             })
+};
+
+function remove(id) {
+      return db('games')
+      .where({ id })
+      .del()
 };

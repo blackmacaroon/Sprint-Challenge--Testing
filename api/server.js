@@ -33,6 +33,20 @@ server.get('/', (req, res) => {
             }
             
       })
+      .delete('/games/:id', (req, res) => {
+            const id = req.params.id;
+            db.remove(id)
+                  .then(count => {
+                        if(count > 0) {
+                              res.status(204).json({ message: 'like it never happened.'})
+                        } else {
+                              res.status(404).json({ message: "that's not even a thing. "})
+                        }
+                  })
+                  .catch(err => {
+                        res.status(500).json(err)
+                  })
+      })
 
 
 module.exports = server;
